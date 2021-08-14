@@ -75,7 +75,7 @@ exports.update = (req, res) => {
             if(err) {
                 if (err.kind === "not_found") {
                     res.status(404).send({
-                        message: `No User found with id ${req.params.userId}.`
+                        message: `No User found with id ${req.params.userId}`
                     });
                 } else {
                     res.status(500).send({
@@ -93,7 +93,7 @@ exports.delete = (req, res) => {
         if (err) {
             if (err.kind === "not_found") {
                 res.status(404).send({
-                    message: `No user found with id ${req.params.userId}.`
+                    message: `No user found with id ${req.params.userId}`
                 });
             } else {
                 res.status(500).send({

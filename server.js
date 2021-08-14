@@ -10,12 +10,8 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-//simple route
-app.get("/", (req, res) => {
-    res.json({ message: "Welcome to bezkoder application."});
-});
-
 //Includes
+require("./api/routes/user.routes.js")(app);
 require("./api/routes/user.routes.js")(app);
 
 //set port, listen for requests

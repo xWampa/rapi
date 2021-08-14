@@ -40,7 +40,7 @@ User.findById = (userId, result) => {
         return;
       }
   
-      // not found User with the id
+      // no User found with the id
       result({ kind: "not_found" }, null);
     });
   };
