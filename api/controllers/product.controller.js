@@ -5,7 +5,7 @@ exports.create = (req, res) => {
     // Validate request
     if (!req.body) {
         res.status(400).send({
-            message: "Context cannot be empty!"
+            message: "Content cannot be empty!"
         });
     }
 
@@ -60,7 +60,7 @@ exports.findOne = (req, res) => {
             res.send(data);
         }
     });
-}
+};
 
 // Update a Product identified by the productId
 exports.update = (req, res) => {
@@ -108,5 +108,5 @@ exports.delete = (req, res) => {
         } else {
             res.send({ message: "Product was deleted!"});
         }       
-    })
+    });
 };

@@ -9,7 +9,7 @@ const Product = function(product) {
 }
 
 Product.create = (newProduct, result) => {
-    var name = newProduct.nombre;
+    var name = newProduct.name;
     var price = newProduct.price;
     var category = newProduct.category;
 
@@ -45,7 +45,7 @@ Product.findById = (productId, result) =>{
 };
 
 Product.getAll = result => {
-    sql.query("SELECT * FROM products", (err, res) => {
+    sql.query("SELECT id, name, FORMAT(price,2) AS price, category FROM products", (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);

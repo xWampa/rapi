@@ -13,6 +13,8 @@ app.use(express.urlencoded({
 //Includes
 require("./api/routes/user.routes.js")(app);
 require("./api/routes/product.routes.js")(app);
+require("./api/routes/table.routes.js")(app);
+require("./api/routes/tbill.routes.js")(app);
 
 //set port, listen for requests
 app.listen(8888, () => {
