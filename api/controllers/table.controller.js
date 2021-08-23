@@ -12,6 +12,7 @@ exports.create = (req, res) => {
     //Create a Table
     const table = new Table({
         number: req.body.number,
+        total: req.body.total,
     });
 
     //Save Table in the DB

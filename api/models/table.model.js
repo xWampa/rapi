@@ -4,12 +4,13 @@ const sql = require("./db.js");
 // Constructor
 const Table = function(table) {
     this.number = table.number;
+    this.total = table.total;
 };
 
 Table.create = (newTable, result) => {
     var number = newTable.number;
 
-    sql.query(`INSERT INTO tables (number) VALUES (${number})`, (err, res) => {
+    sql.query(`INSERT INTO tables (number, total) VALUES (${number}, ${total})`, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
