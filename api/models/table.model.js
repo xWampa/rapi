@@ -41,7 +41,7 @@ Table.findByNumber = (tableNumber, result) => {
 };
 
 Table.getAll = result => {
-    sql.query("SELECT * FROM tables", (err, res) => {
+    sql.query("SELECT id, number, FORMAT(total,2) AS total FROM tables", (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);

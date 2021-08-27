@@ -18,8 +18,9 @@ Tbill.create = (newTbill, result) => {
     var total = newTbill.total;
 
     sql.query(`INSERT INTO tbills (tnumber, item, units, iprice, total)
-    VALUES (${tnumber}, '${item}', ${units}, ${iprice}, ${total})`, (err, res) => {
-        if (err) {
+    VALUES (${tnumber}, '${item}', ${units}, ${iprice}, ${total})
+    ON DUPLICATE KEY UPDATE units = (units + 1), total = units*iprice`, (err, res) => {
+        if (err) {    
             console.log("error: ", err);
             result(err, null);
             return;
@@ -30,7 +31,7 @@ Tbill.create = (newTbill, result) => {
 };
 
 Tbill.findTableBill = (tableNumber, result) => {
-    sql.query(`SELECT * FROM tbills WHERE tnumber = ${tableNumber}`, (err, res) => {
+    sql.query(`SELECT id, tnumber, item, units, FORMAT(iprice,2) AS iprice, FORMAT(total,2) AS total FROM tbills WHERE tnumber = ${tableNumber}`, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -47,9 +48,8 @@ Tbill.findTableBill = (tableNumber, result) => {
     });
 };
 
-// I think i will never use this one
 Tbill.getAll = result => {
-    sql.query("SELECT * FROM tbills", (err, res) => {
+    sql.query("SELECT id, tnumber, item, units, FORMAT(iprice,2) AS iprice, FORMAT(total,2) AS total FROM tbills", (err, res) => {
         if (err) {
           console.log("error: ", err);
           result(null, err);
