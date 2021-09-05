@@ -58,7 +58,7 @@ Product.getAll = result => {
 
 Product.updateById = (id, product, result) => {
     sql.query(
-        "UPDATE user SET name = ?, price = ?, categoria = ? WHERE id = ?",
+        "UPDATE tbills SET name = ?, price = ?, category = ? WHERE id = ?",
         [product.name, product.price, product.category],
         (err, res) => {
             if (err) {
@@ -98,4 +98,4 @@ Product.remove = (id, result) => {
     });
 };
 
-module.exports = Product
+module.exports = Product;
