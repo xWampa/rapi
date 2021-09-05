@@ -10,11 +10,11 @@ const CashCount = function(cashCount) {
     this.numberSales = cashCount.numberSales;
     this.averageTicket = cashCount.averageTicket;
     this.income = cashCount.income;
-    this.outcome = cashCount.outcome;
+    this.outflow = cashCount.outflow;
 };
 
 CashCount.init = (result) => {
-    sql.query(`INSERT INTO cash_counts (day, net_sale, card_payments, number_sales, average_ticket, income, outcome)
+    sql.query(`INSERT INTO cash_counts (day, net_sale, card_payments, number_sales, average_ticket, income, outflow)
     VALUES (curdate(), 0, 0, 0, 0, 0, 0, 0)`, (err, res) => {
         if(err) {
             console.log("error: ", err);
@@ -60,8 +60,8 @@ CashCount.getAll = result => {
 
 CashCount.updateById = (id, cashCount, result) => {
     sql.query(
-        "UPDATE cash_counts SET net_sale = ?, card_payments = ?, cash_payments = ?, number_sales = ?, average_ticket = ?, income = ?, outcome = ? WHERE id = ?",
-        [cashCount.netSale, cashCount.cardPayments, cashCount.cashPayments, cashCount.numberSales, cashCount.averageTicket, cashCount.income, cashCount.outcome, id],
+        "UPDATE cash_counts SET net_sale = ?, card_payments = ?, cash_payments = ?, number_sales = ?, average_ticket = ?, income = ?, outflow = ? WHERE id = ?",
+        [cashCount.netSale, cashCount.cardPayments, cashCount.cashPayments, cashCount.numberSales, cashCount.averageTicket, cashCount.income, cashCount.outflow, id],
         (err, res) => {
             if (err) {
                 console.log("error: ", err);
