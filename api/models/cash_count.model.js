@@ -13,9 +13,10 @@ const CashCount = function(cashCount) {
     this.outflow = cashCount.outflow;
 };
 
-CashCount.init = (result) => {
-    sql.query(`INSERT INTO cash_counts (day, net_sale, card_payments, number_sales, average_ticket, income, outflow)
-    VALUES (curdate(), 0, 0, 0, 0, 0, 0, 0)`, (err, res) => {
+CashCount.init = result => {
+    sql.query(`INSERT INTO cash_counts (day, net_sale, card_payments, cash_payments, number_sales, average_ticket, income, outflow)
+    VALUES (curdate(), 0, 0, 0, 0, 0, 0, 0)
+    ON DUPLICATE KEY UPDATE id=id`, (err, res) => {
         if(err) {
             console.log("error: ", err);
             result(err, null);

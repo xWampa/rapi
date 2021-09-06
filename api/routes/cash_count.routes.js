@@ -5,15 +5,15 @@ module.exports = app => {
     app.post("/cash_counts", cash_counts.create);
 
     // Retrieve all Cash counts
-    app.post("/cash_counts", cash_counts.findAll);
+    app.get("/cash_counts", cash_counts.findAll);
 
     // Retrieve a single Cash count with Date
-    app.post("/cash_counts/:cashCountDate", cash_counts.findOne);
+    app.get("/cash_counts/:cashCountDate", cash_counts.findOne);
 
     // Update a Cash count with cashCountId
-    app.post("/cash_counts/:cashCountId", cash_counts.update);
+    app.put("/cash_counts/:cashCountId", cash_counts.update);
 
     // Delete a Cash count with cashCountId
-    app.post("/cash_counts/:cashCountId", cash_counts.delete);
+    app.delete("/cash_counts/:cashCountId", cash_counts.delete);
 
 };
