@@ -52,18 +52,18 @@ exports.update = (req, res) => {
         });
     }
 
-    CashCount.updateById(
-        req.params.cashCountId,
+    CashCount.updateByDate(
+        req.params.cashCountDate,
         new CashCount(req.body),
         (err, data) => {
             if(err) {
                 if (err.kind === "not_found") {
                     res.status(404).send({
-                        message: `No Cash count found with id ${req.params.cashCountId}`
+                        message: `No Cash count found with Date ${req.params.cashCountDate}`
                     });
                 } else {
                     res.status(500).send({
-                        message: "Error updating Cash count with id " + req.params.cashCountId
+                        message: "Error updating Cash count with id " + req.params.cashCountDate
                     });
                 }
             } else res.send(data);

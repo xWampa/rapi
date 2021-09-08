@@ -59,10 +59,18 @@ CashCount.getAll = result => {
     });
 };
 
-CashCount.updateById = (id, cashCount, result) => {
+CashCount.updateByDate = (cashCountDate, cashCount, result) => {
     sql.query(
-        "UPDATE cash_counts SET net_sale = ?, card_payments = ?, cash_payments = ?, number_sales = ?, average_ticket = ?, income = ?, outflow = ? WHERE id = ?",
-        [cashCount.netSale, cashCount.cardPayments, cashCount.cashPayments, cashCount.numberSales, cashCount.averageTicket, cashCount.income, cashCount.outflow, id],
+        `UPDATE cash_counts SET
+        net_sale = COALESCE(net_sale + ?, net_sale),
+        card_payments = COALESCE(card_payments + ?, card_payments),
+        cash_payments = COALESCE(cash_payments + ?, cash_payments),
+        number_sales = COALESCE(number_sales + ?, number_sales),
+        average_ticket = COALESCE(?, average_ticket),
+        income = COALESCE(income + ?, income),
+        outflow = COALESCE(outflow + ?, outflow)
+        WHERE day = ?`,
+        [cashCount.netSale, cashCount.cardPayments, cashCount.cashPayments, cashCount.numberSales, cashCount.averageTicket, cashCount.income, cashCount.outflow, cashCountDate],
         (err, res) => {
             if (err) {
                 console.log("error: ", err);
@@ -76,8 +84,8 @@ CashCount.updateById = (id, cashCount, result) => {
                 return;
             }
 
-            console.log("Cash count updated: ", {id: id, ...cashCount});
-            result(null, {id: id, ...cashCount});
+            console.log("Cash count updated: ", {id: res.insertId, ...cashCount});
+            result(null, {id: res.insertId, ...cashCount});
 
         });
 };

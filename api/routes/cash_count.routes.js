@@ -10,8 +10,8 @@ module.exports = app => {
     // Retrieve a single Cash count with Date
     app.get("/cash_counts/:cashCountDate", cash_counts.findOne);
 
-    // Update a Cash count with cashCountId
-    app.put("/cash_counts/:cashCountId", cash_counts.update);
+    // Update a Cash count with cashCountDate
+    app.put("/cash_counts/:cashCountDate", cash_counts.update);
 
     // Delete a Cash count with cashCountId
     app.delete("/cash_counts/:cashCountId", cash_counts.delete);
