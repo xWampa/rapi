@@ -84,8 +84,8 @@ Tbill.updateById = (id, tbill, result) => {
     );
 };
 
-Tbill.remove = (id, result) => {
-    sql.query("DELETE FROM tbills WHERE id = ?", id, (err, res) => {
+Tbill.remove = (tnumber, result) => {
+    sql.query("DELETE FROM tbills WHERE tnumber = ?", tnumber, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
@@ -97,7 +97,7 @@ Tbill.remove = (id, result) => {
             return;
         }
 
-        console.log("deleted tbill with id: ", id);
+        console.log("deleted tbills with Table number: ", tnumber);
         result(null, res);
     });
 };

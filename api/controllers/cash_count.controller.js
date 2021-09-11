@@ -32,7 +32,7 @@ exports.findOne = (req, res) => {
         if (err) {
             if (err.kind == "not_found") {
                 res.status(404).send({
-                    message: `Not Cash count found with id ${req.params.cashCountDate}.`
+                    message: `No Cash count found with id ${req.params.cashCountDate}.`
                 });
             } else {
                 res.status(500).send({

@@ -61,6 +61,30 @@ exports.findOne = (req, res) => {
     });
 };
 
+// Updates the total money to pay in a table
+exports.update = (req, res) => {
+    // Validate request
+    if(!req.body){
+        res.status(400).send({
+            message: "Content cannot be empty!"
+        });
+    }
+    Table.updateByTableNumber(new Table(req.body), (err, data) => {
+        if (err) {
+            if (err.kind == "not_found") {
+                res.status(404).send({
+                    message: `No Tablefound with number ${req.params.number}.`
+                });
+            } else {
+                res.status(500).send({
+                    message: "Error updating Table with number " + req.params.number
+                });
+            }
+        } else res.send(data);
+
+    });
+}
+
 // Delete a Table with the provided tableNumber
 exports.delete = (req, res) => {
     Table.remove(req.params.tableNumber, (err, data) => {

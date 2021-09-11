@@ -13,6 +13,6 @@ module.exports = app => {
     // Update a Tbill with tbillId
     app.put("/tbills/:tbillId", tbills.update);
 
-    // Delete a Tbill with tbillId
-    app.delete("/tbills/:tbillId", tbills.delete);
+    // Delete a Tbill with tnumber
+    app.delete("/tbills/:tnumber", tbills.delete);
 }

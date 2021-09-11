@@ -10,6 +10,9 @@ module.exports = app => {
     // Retrieve a single Table with userId
     app.get("/tables/:tableNumber", tables.findOne);
 
+    // Update a Table total with provided tableNumber
+    app.put("/tables/:number", tables.update);
+
     // Delete a Table with userId
     app.delete("/tables/:tableNumber", tables.delete);
 }

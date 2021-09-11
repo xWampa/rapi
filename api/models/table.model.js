@@ -52,6 +52,29 @@ Table.getAll = result => {
     });
 };
 
+Table.updateByTableNumber = (newTable, result) => {
+    sql.query(
+        `UPDATE tables SET total = ? WHERE number = ?`,
+        [newTable.total, newTable.number], 
+        (err, res) => {
+            if (err) {
+                console.log("error: ", err);
+                result(null, err);
+                return;
+            }
+
+            if (res.affectedRows == 0) {
+                //No Table count found with the number provided
+                result({ kind: "not_found"}, null);
+                return;
+            }
+
+            console.log("Table total updated: ", {id: res.insertId, total: newTable.total});
+            result(null, {id: res.insertId, total: newTable.total});
+
+        });
+};
+
 Table.remove = (number, result) => {
     sql.query("DELETE FROM tables WHERE number = ?", number, (err, res) => {
         if (err) {

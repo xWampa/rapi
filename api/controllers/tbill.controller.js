@@ -91,17 +91,17 @@ exports.update = (req, res) => {
 
 // Delete a Tbill with the specified tbillId in the request
 exports.delete = (req, res) => {
-    Tbill.remove(req.params.tbillId, (err, data) => {
+    Tbill.remove(req.params.tnumber, (err, data) => {
         if (err) {
             if (err.kind === "not_found") {
                 res.status(404).send({
-                    message: `No tbill found with id ${req.params.tbillId}`
+                    message: `No tbills found with number ${req.params.tnumber}`
                 });
             } else {
                 res.status(500).send({
-                    message: "Could not delete Tbill with id " + req.params.tbillId
+                    message: "Could not delete Tbills with tnumber " + req.params.tnumber
                 });
             }
-        } else res.send({ message: "Tbill was deleted successfully!"});
+        } else res.send({ message: "Tbills were deleted successfully!"});
     });
 };
