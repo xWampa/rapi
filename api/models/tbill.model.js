@@ -63,8 +63,8 @@ Tbill.getAll = result => {
 
 Tbill.updateById = (id, tbill, result) => {
     sql.query(
-        "UPDATE tbills SET tnumber = ?, item = ?, units = ?, iprice = ?, total =?",
-        [tbill.tnumber, tbill.item, tbill.units, tbill.iprice, tbill.total],
+        "UPDATE tbills SET tnumber = ?, item = ?, units = ?, iprice = ?, total =? WHERE id = ?",
+        [tbill.tnumber, tbill.item, tbill.units, tbill.iprice, tbill.total, id],
         (err, res) => {
             if (err) {
                 console.log("error: ", err);
