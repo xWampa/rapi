@@ -63,7 +63,13 @@ Tbill.getAll = result => {
 
 Tbill.updateById = (id, tbill, result) => {
     sql.query(
-        "UPDATE tbills SET tnumber = ?, item = ?, units = ?, iprice = ?, total =? WHERE id = ?",
+        `UPDATE tbills SET
+        tnumber = COALESCE(?, tnumber),
+        item = COALESCE(?, item),
+        units = COALESCE(?, units),
+        iprice = COALESCE(?, iprice),
+        total = COALESCE(?, total)
+        WHERE id = ?`,
         [tbill.tnumber, tbill.item, tbill.units, tbill.iprice, tbill.total, id],
         (err, res) => {
             if (err) {
