@@ -27,7 +27,7 @@ exports.create = (req, res) => {
             });
             else res.send(data);
     });
-};
+}
 
 // Retrieve all Tbills from the given table
 exports.findOne = (req, res) => {
@@ -44,7 +44,7 @@ exports.findOne = (req, res) => {
             }
         } else res.send(data);
     });
-};
+}
 
 // Retrieve all Tbills from all DB
 exports.findAll = (req, res) => {
@@ -58,7 +58,7 @@ exports.findAll = (req, res) => {
             res.send(data);
         } 
     });
-};
+}
 
 // Update a Tbill identified by the id in the request
 exports.update = (req, res) => {
@@ -87,7 +87,7 @@ exports.update = (req, res) => {
             } else res.send(data);
         }
     );
-};
+}
 
 // Delete a Tbill with the specified tbillId in the request
 exports.delete = (req, res) => {
@@ -104,4 +104,4 @@ exports.delete = (req, res) => {
             }
         } else res.send({ message: "Tbills were deleted successfully!"});
     });
-};
+}

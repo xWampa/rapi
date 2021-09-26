@@ -8,7 +8,7 @@ const Tbill = function(tbill) {
     this.units = tbill.units;
     this.iprice = tbill.iprice;
     this.total = tbill.total;
-};
+}
 
 Tbill.create = (newTbill, result) => {
     var tnumber = newTbill.tnumber;
@@ -28,7 +28,7 @@ Tbill.create = (newTbill, result) => {
         console.log("Tbill created: ", {id: res.insertId, ...newTbill});
         result(null, {id: res.insertId, ...newTbill});
     });
-};
+}
 
 Tbill.findTableBill = (tableNumber, result) => {
     sql.query(`SELECT id, tnumber, item, units, FORMAT(iprice,2) AS iprice, FORMAT(total,2) AS total FROM tbills WHERE tnumber = ${tableNumber}`, (err, res) => {
@@ -46,7 +46,7 @@ Tbill.findTableBill = (tableNumber, result) => {
 
         result({ kind: "not_found"}, null);
     });
-};
+}
 
 Tbill.getAll = result => {
     sql.query("SELECT id, tnumber, item, units, FORMAT(iprice,2) AS iprice, FORMAT(total,2) AS total FROM tbills", (err, res) => {
@@ -59,7 +59,7 @@ Tbill.getAll = result => {
         console.log("tbills: ", res);
         result(null, res);
       });
-};
+}
 
 Tbill.updateById = (id, tbill, result) => {
     sql.query(
@@ -88,7 +88,7 @@ Tbill.updateById = (id, tbill, result) => {
             result(null, {id: id, ...tbill});
         }
     );
-};
+}
 
 Tbill.remove = (tnumber, result) => {
     sql.query("DELETE FROM tbills WHERE tnumber = ?", tnumber, (err, res) => {
@@ -106,6 +106,6 @@ Tbill.remove = (tnumber, result) => {
         console.log("deleted tbills with Table number: ", tnumber);
         result(null, res);
     });
-};
+}
 
 module.exports = Tbill;

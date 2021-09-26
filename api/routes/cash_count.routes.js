@@ -16,4 +16,4 @@ module.exports = app => {
     // Delete a Cash count with cashCountId
     app.delete("/cash_counts/:cashCountId", cash_counts.delete);
 
-};
+}

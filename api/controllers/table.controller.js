@@ -26,7 +26,7 @@ exports.create = (req, res) => {
             res.send(data);
         }
     });
-};
+}
 
 // Retrieve all Tables from the DB
 exports.findAll = (req, res) => {
@@ -40,7 +40,7 @@ exports.findAll = (req, res) => {
             res.send(data);
         }
     });
-};
+}
 
 // Find a single Table with the number
 exports.findOne = (req, res) => {
@@ -59,7 +59,7 @@ exports.findOne = (req, res) => {
             res.send(data);
         }
     });
-};
+}
 
 // Updates the total money to pay in a table
 exports.update = (req, res) => {
@@ -102,4 +102,4 @@ exports.delete = (req, res) => {
             res.send({ message: "Table was deleted!"});
         }
     });
-};
+}

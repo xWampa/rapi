@@ -15,4 +15,5 @@ module.exports = app => {
 
     // Delete a Table with userId
     app.delete("/tables/:tableNumber", tables.delete);
+    
 }

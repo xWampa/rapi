@@ -10,7 +10,7 @@ exports.create = (req, res) => {
             });
             else res.send(data);
     });
-};
+}
 
 // Retrieve all CashCounts from the database
 exports.findAll = (req, res) => {
@@ -24,7 +24,7 @@ exports.findAll = (req, res) => {
             res.send(data);
         } 
     });
-};
+}
 
 // Find a single Cash count with a casCountDate
 exports.findOne = (req, res) => {
@@ -41,7 +41,7 @@ exports.findOne = (req, res) => {
             }
         } else res.send(data);
     });
-};
+}
 
 // Update a Cash count identified by the cashCountDate in the request
 exports.update = (req, res) => {
@@ -70,7 +70,7 @@ exports.update = (req, res) => {
             
         }
     );
-};
+}
 
 // Delete a Cash count with the specified cashCountDate in the request
 exports.delete = (req, res) => {
@@ -87,4 +87,4 @@ exports.delete = (req, res) => {
             }
         } else res.send({ message: "User was deleted successfully!"});
     });
-};
+}

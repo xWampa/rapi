@@ -7,7 +7,7 @@ const User = function(user) {
     this.name = user.name;
     this.email = user.email;
     this.passwd = user.passwd;
-};
+}
 
 User.create = (newUser, result) => {
   var login = newUser.login;
@@ -24,7 +24,7 @@ User.create = (newUser, result) => {
         console.log("User created: ", {id: res.insertId, ...newUser});
         result(null, { id: res.insertId, ...newUser});
     });
-};
+}
 
 User.findById = (userId, result) => {
   sql.query(`SELECT * FROM users WHERE id = ${userId}`, (err, res) => {
@@ -43,7 +43,7 @@ User.findById = (userId, result) => {
     // no User found with the id
     result({ kind: "not_found" }, null);
   });
-};
+}
 
 User.getAll = result => {
   sql.query("SELECT * FROM users", (err, res) => {
@@ -56,7 +56,7 @@ User.getAll = result => {
     console.log("users: ", res);
     result(null, res);
   });
-};
+}
 
 User.updateById = (id, user, result) => {
   sql.query(
@@ -79,7 +79,7 @@ User.updateById = (id, user, result) => {
       result(null, { id: id, ...user });
     }
   );
-};
+}
 
 User.remove = (id, result) => {
   sql.query("DELETE FROM users WHERE id = ?", id, (err, res) => {
@@ -98,6 +98,6 @@ User.remove = (id, result) => {
     console.log("deleted user with id: ", id);
     result(null, res);
   });
-};
+}
 
 module.exports = User;

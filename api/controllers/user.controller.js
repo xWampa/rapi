@@ -26,7 +26,7 @@ exports.create = (req, res) => {
             });
             else res.send(data);
     });
-};
+}
 
 // Retrieve all Users from the database
 exports.findAll = (req, res) => {
@@ -40,7 +40,7 @@ exports.findAll = (req, res) => {
             res.send(data);
         } 
     });
-};
+}
 
 // Find a signle User with a userId
 exports.findOne = (req, res) => {
@@ -57,7 +57,7 @@ exports.findOne = (req, res) => {
             }
         } else res.send(data);
     });
-};
+}
 
 // Update a User indentified by the userId in the request
 exports.update = (req, res) => {
@@ -85,7 +85,7 @@ exports.update = (req, res) => {
             } else res.send(data);
         }
     );
-};
+}
 
 // Delete a User with the specified userId in the request
 exports.delete = (req, res) => {
@@ -102,4 +102,4 @@ exports.delete = (req, res) => {
             }
         } else res.send({ message: "User was deleted successfully!"});
     });
-};
+}

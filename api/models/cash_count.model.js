@@ -11,7 +11,7 @@ const CashCount = function(cashCount) {
     this.averageTicket = cashCount.averageTicket;
     this.income = cashCount.income;
     this.outflow = cashCount.outflow;
-};
+}
 
 CashCount.init = result => {
     sql.query(`INSERT INTO cash_counts (day, net_sale, card_payments, cash_payments, number_sales, average_ticket, income, outflow)
@@ -45,7 +45,7 @@ CashCount.findByDate = (cashCountDate, result) => {
         // No entry found
         result({ kind: "not_found" }, null);
     });
-};
+}
 
 CashCount.getAll = result => {
     sql.query("SELECT * FROM cash_counts", (err, res) => {
@@ -57,7 +57,7 @@ CashCount.getAll = result => {
         console.log("cash_count: ", res);
         result(null, res);        
     });
-};
+}
 
 CashCount.updateByDate = (cashCountDate, cashCount, result) => {
     sql.query(
@@ -88,7 +88,7 @@ CashCount.updateByDate = (cashCountDate, cashCount, result) => {
             result(null, {id: res.insertId, ...cashCount});
 
         });
-};
+}
 
 CashCount.remove = (id, result) => {
     sql.query("DELETE FROM cash_counts WHERE id = ?", id, (err, res) => {
@@ -107,6 +107,6 @@ CashCount.remove = (id, result) => {
         console.log("deleted Cash count with id: ", id);
         result(null, res);
     });
-};
+}
 
 module.exports = CashCount;

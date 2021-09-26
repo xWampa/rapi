@@ -23,7 +23,7 @@ Product.create = (newProduct, result) => {
             console.log("Producto creado: ", {id: res.insertId, ...newProduct});
             result(null,{id: res.insertId, ...newProduct});
         });
-};
+}
 
 Product.findById = (productId, result) =>{
     sql.query(`SELECT * FROM products WHERE id = ${productId}`, (err, res) => {
@@ -42,7 +42,7 @@ Product.findById = (productId, result) =>{
         // No Product found
         result({ kind: "not_found" }, null);
     });
-};
+}
 
 Product.getAll = result => {
     sql.query("SELECT id, name, FORMAT(price,2) AS price, category FROM products", (err, res) => {
@@ -54,12 +54,12 @@ Product.getAll = result => {
         console.log("products: ", res);
         result(null, res);
     });
-};
+}
 
 Product.updateById = (id, product, result) => {
     sql.query(
-        "UPDATE tbills SET name = ?, price = ?, category = ? WHERE id = ?",
-        [product.name, product.price, product.category],
+        "UPDATE products SET name = ?, price = ?, category = ? WHERE id = ?",
+        [product.name, product.price, product.category, id],
         (err, res) => {
             if (err) {
                 console.log("error: ", err);
@@ -77,7 +77,7 @@ Product.updateById = (id, product, result) => {
             result(null, {id: id, ...product});
         }
     );
-};
+}
 
 Product.remove = (id, result) => {
     sql.query("DELETE FROM products WHERE id = ?", id, (err, res) => {
@@ -96,6 +96,6 @@ Product.remove = (id, result) => {
         console.log("deleted user with id: ", id);
         result(null, res);
     });
-};
+}
 
 module.exports = Product;

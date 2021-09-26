@@ -5,7 +5,7 @@ const sql = require("./db.js");
 const Table = function(table) {
     this.number = table.number;
     this.total = table.total;
-};
+}
 
 Table.create = (newTable, result) => {
     var number = newTable.number;
@@ -19,7 +19,7 @@ Table.create = (newTable, result) => {
         console.log("Mesa creada: ", {id: res.insertId, ...newTable});
         result(null, {id: res.insertId, ...newTable});
     });
-};
+}
 
 Table.findByNumber = (tableNumber, result) => {
     sql.query(`SELECT * FROM tables WHERE number = ${tableNumber}`, (err, res) => {
@@ -38,7 +38,7 @@ Table.findByNumber = (tableNumber, result) => {
         // No Table found
         result({ kind: "not_found" }, null);
     });
-};
+}
 
 Table.getAll = result => {
     sql.query("SELECT id, number, FORMAT(total,2) AS total FROM tables", (err, res) => {
@@ -50,7 +50,7 @@ Table.getAll = result => {
         console.log("tables: ", res);
         result(null, res);
     });
-};
+}
 
 Table.updateByTableNumber = (newTable, result) => {
     sql.query(
@@ -73,7 +73,7 @@ Table.updateByTableNumber = (newTable, result) => {
             result(null, {id: res.insertId, total: newTable.total});
 
         });
-};
+}
 
 Table.remove = (number, result) => {
     sql.query("DELETE FROM tables WHERE number = ?", number, (err, res) => {
@@ -92,6 +92,6 @@ Table.remove = (number, result) => {
         console.log("deleted table with number: ", number);
         result(null, res);
     });
-};
+}
 
 module.exports = Table

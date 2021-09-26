@@ -1,4 +1,6 @@
 const Product = require("../models/product.model.js");
+const multer = require('multer');
+const upload = multer({dest: 'uploads/'});
 
 // Create and Save a new Product
 exports.create = (req, res) => {
@@ -27,7 +29,7 @@ exports.create = (req, res) => {
             res.send(data);
         }
     });
-};
+}
 
 // Retrieve all Products from the database
 exports.findAll = (req, res) => {
@@ -41,7 +43,7 @@ exports.findAll = (req, res) => {
             res.send(data);
         }
     });
-};
+}
 
 // Find a single Product with the productId
 exports.findOne = (req, res) => {
@@ -60,7 +62,7 @@ exports.findOne = (req, res) => {
             res.send(data);
         }
     });
-};
+}
 
 // Update a Product identified by the productId
 exports.update = (req, res) => {
@@ -78,7 +80,7 @@ exports.update = (req, res) => {
             if (err) {
                 if (err.kind === "not_found") {
                     res.status(404).send({
-                        message: `No user found with id ${req.params.productId}`
+                        message: `No product found with id ${req.params.productId}`
                     });
                 } else {
                     res.status(500).send({
@@ -90,7 +92,7 @@ exports.update = (req, res) => {
             }
         }
     );
-};
+}
 
 // Delete a Product with the provided productId
 exports.delete = (req, res) => {
@@ -109,4 +111,4 @@ exports.delete = (req, res) => {
             res.send({ message: "Product was deleted!"});
         }       
     });
-};
+}
