@@ -1,5 +1,6 @@
 const Product = require("../models/product.model.js");
 const multer = require('multer');
+const { reset } = require("nodemon");
 const upload = multer({dest: 'uploads/'});
 
 // Create and Save a new Product
@@ -92,6 +93,38 @@ exports.update = (req, res) => {
             }
         }
     );
+}
+
+// Update a Product's image by the productId
+exports.updateImage = (req,res) => {
+    console.log(req);
+    // Validate request
+    if (!req.body) {
+        reset.status(400).send({
+            message: "Content cannot be empty"
+        });
+    }
+
+    Product.updateImageById(
+        req.params.productId,
+        req.body.imageName,
+        (err, data) => {
+            if (err) {
+                if (err.kind === "not_found") {
+                    res.status(404).send({
+                        message: `No product found with id ${req.params.productId}`
+                    });
+                } else {
+                    res.status(500).send({
+                        message: `Error updating Product with id ${req.params.productId}`
+                    });
+                }
+            } else {
+                res.send(data);
+            }
+
+        }
+    )
 }
 
 // Delete a Product with the provided productId

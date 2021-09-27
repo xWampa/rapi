@@ -6,6 +6,7 @@ const Product = function(product) {
     this.name = product.name;
     this.price = product.price;
     this.category = product.category;
+    //this.image = product.image;
 }
 
 Product.create = (newProduct, result) => {
@@ -45,7 +46,7 @@ Product.findById = (productId, result) =>{
 }
 
 Product.getAll = result => {
-    sql.query("SELECT id, name, FORMAT(price,2) AS price, category FROM products", (err, res) => {
+    sql.query("SELECT id, name, FORMAT(price,2) AS price, category, image FROM products", (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
@@ -77,6 +78,25 @@ Product.updateById = (id, product, result) => {
             result(null, {id: id, ...product});
         }
     );
+}
+
+Product.updateImageById = (id, filename, result) => {
+    sql.query("UPDATE products SET image = ? WHERE id = ?", [filename, id], (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+        }
+
+        if (res.affectedRows == 0) {
+            //No product found with the id provided
+            result({ kind: "not_found"}, null);
+            return;
+        }
+
+        console.log("product updated: ", {id: id, image: filename});
+        result(null, {id: id, image: filename});
+    });
 }
 
 Product.remove = (id, result) => {

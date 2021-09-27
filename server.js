@@ -4,7 +4,8 @@ const multer = require('multer');
 const storage = multer.diskStorage({
     destination: `${__dirname}/uploads/`,
     filename: (req, file, cb) => {
-        const fileName = `${Date.now()}${path.extname(file.originalname)}`;
+        //const fileName = `${req.body.imageName}${path.extname(file.originalname)}`;
+        const fileName = `${req.body.imageName}`;
         cb(null, fileName);
         
     }
@@ -22,6 +23,9 @@ app.use(express.urlencoded({
     extended: true
 }));
 
+//handle de image folder to view images
+app.use('/img', express.static(__dirname + '/uploads/'));
+
 //Includes
 require("./api/routes/user.routes.js")(app);
 require("./api/routes/product.routes.js")(app);
@@ -35,6 +39,10 @@ app.post('/image', uploadImage, (req,res) => {
     
     res.send("failed");
 });
+
+// app.get('/img/', function(res){
+//     res.sendFile();
+// })
 
 //set port, listen for requests
 app.listen(8888, () => {
